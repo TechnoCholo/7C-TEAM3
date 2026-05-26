@@ -1,89 +1,1105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bones Website</title>
-
+    <title>The Skeletal System</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        * {
             margin: 0;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar - HORIZONTAL */
         nav {
-            background-color: #333;
-            padding: 15px;
+            background: linear-gradient(90deg, #000 0%, #1a1a1a 50%, #000 100%);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            border: 4px solid #d4af37;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+            gap: 0;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            flex: 1;
+            text-align: center;
+            border-right: 3px solid #d4af37;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li:last-child {
+            border-right: none;
+        }
+
+        nav li::before {
+            content: '🦴';
+            position: absolute;
+            left: 8px;
+            font-size: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
         }
 
         nav a {
-            color: white;
+            display: block;
+            color: #fff;
             text-decoration: none;
-            margin: 15px;
-            font-size: 18px;
+            padding: 16px 12px;
+            font-weight: 700;
+            font-size: 11px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            background: #000;
+            width: 100%;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            color: #222;
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+            transition: left 0.5s ease;
         }
 
+        nav a:hover {
+            background: linear-gradient(90deg, #d4af37, #ffaa00);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a.active {
+            background: linear-gradient(135deg, #d4af37 0%, #ffb800 50%, #d4af37 100%);
+            color: #000;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.3), 0 0 15px rgba(212, 175, 55, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: inset 0 2px 8px rgba(0,0,0,0.3), 0 0 15px rgba(212, 175, 55, 0.8); }
+            50% { box-shadow: inset 0 2px 8px rgba(0,0,0,0.3), 0 0 25px rgba(212, 175, 55, 1); }
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            color: #fff;
+            padding: 50px 30px;
+            text-align: center;
+            border: 5px solid #d4af37;
+            margin: 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+            box-shadow: 
+                inset 0 0 40px rgba(212, 175, 55, 0.15),
+                0 0 50px rgba(212, 175, 55, 0.6),
+                0 8px 32px rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header::before {
+            content: '🦴 🦴 🦴';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            animation: slideIn 3s ease-in-out infinite;
+        }
+
+        @keyframes slideIn {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .header::after {
+            content: '🦴 🦴 🦴';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            animation: slideIn 3s ease-in-out infinite reverse;
+        }
+
+        .header-center {
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        /* Bola naranja */
+        .header-left-bone {
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle at 35% 35%, #ffcc00, #ff8800);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 60px rgba(255, 136, 0, 1.5),
+                0 0 120px rgba(255, 200, 0, 0.8),
+                inset -15px -15px 30px rgba(0, 0, 0, 0.7),
+                inset 8px 8px 20px rgba(255, 230, 0, 0.6);
+            flex-shrink: 0;
+            font-size: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: bonePulseOrange 4s ease-in-out infinite, spin 8s linear infinite;
+            position: relative;
+            border: 3px solid rgba(255, 200, 0, 0.5);
+        }
+
+        @keyframes bonePulseOrange {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                box-shadow: 
+                    0 0 60px rgba(255, 136, 0, 1.5),
+                    0 0 120px rgba(255, 200, 0, 0.8),
+                    inset -15px -15px 30px rgba(0, 0, 0, 0.7),
+                    inset 8px 8px 20px rgba(255, 230, 0, 0.6);
+            }
+            50% {
+                transform: scale(1.12) rotate(0deg);
+                box-shadow: 
+                    0 0 100px rgba(255, 136, 0, 2),
+                    0 0 150px rgba(255, 200, 0, 1.2),
+                    inset -15px -15px 30px rgba(0, 0, 0, 0.7),
+                    inset 8px 8px 30px rgba(255, 230, 0, 0.9);
+            }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 56px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 
+                5px 5px 10px rgba(0,0,0,0.95),
+                0 0 30px rgba(212,175,55,0.8),
+                0 0 50px rgba(255, 136, 0, 0.5);
+            font-weight: 900;
+            margin: 0;
+            flex: 1;
+            padding: 0 30px;
+            line-height: 1.2;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 
+                    5px 5px 10px rgba(0,0,0,0.95),
+                    0 0 30px rgba(212,175,55,0.8),
+                    0 0 50px rgba(255, 136, 0, 0.5);
+            }
+            50% {
+                text-shadow: 
+                    5px 5px 10px rgba(0,0,0,0.95),
+                    0 0 40px rgba(212,175,55,1),
+                    0 0 80px rgba(255, 136, 0, 0.8);
+            }
+        }
+
+        /* Bola azul */
+        .header-right-virus {
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle at 35% 35%, #64d5ff, #1e88e5);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 60px rgba(30, 136, 229, 1.5),
+                0 0 120px rgba(100, 213, 255, 0.8),
+                inset -15px -15px 30px rgba(0, 0, 0, 0.7),
+                inset 8px 8px 20px rgba(150, 220, 255, 0.6);
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            font-weight: bold;
+            animation: bonePulseBlue 4s ease-in-out infinite, rotate 8s linear infinite reverse;
+            border: 3px solid rgba(100, 213, 255, 0.5);
+        }
+
+        @keyframes bonePulseBlue {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                box-shadow: 
+                    0 0 60px rgba(30, 136, 229, 1.5),
+                    0 0 120px rgba(100, 213, 255, 0.8),
+                    inset -15px -15px 30px rgba(0, 0, 0, 0.7),
+                    inset 8px 8px 20px rgba(150, 220, 255, 0.6);
+            }
+            50% {
+                transform: scale(1.12) rotate(0deg);
+                box-shadow: 
+                    0 0 100px rgba(30, 136, 229, 2),
+                    0 0 150px rgba(100, 213, 255, 1.2),
+                    inset -15px -15px 30px rgba(0, 0, 0, 0.7),
+                    inset 8px 8px 30px rgba(150, 220, 255, 0.9);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #ffcc00;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(255, 200, 0, 0.5);
+            margin: 0;
+            z-index: 2;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Content Sections */
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .bone-card {
-            background-color: white;
-            width: 250px;
-            margin: 20px auto;
-            padding: 15px;
+        .content {
+            background: linear-gradient(135deg, #f8f8f8 0%, #efefef 100%);
+            padding: 50px;
+            margin: 30px;
+            border: 5px solid #d4af37;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px gray;
+            display: none;
+            min-height: 600px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 0 20px rgba(212, 175, 55, 0.1);
+            color: #333;
+            position: relative;
+            overflow: hidden;
         }
 
-        img {
-            width: 200px;
+        .content::before {
+            content: '🦴';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 100px;
+            opacity: 0.08;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .content::after {
+            content: '💀';
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            font-size: 100px;
+            opacity: 0.08;
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        .content.active {
+            display: block;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content h2 {
+            font-size: 52px;
+            margin-bottom: 30px;
+            color: #000;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.3);
+            border-bottom: 5px solid #d4af37;
+            border-top: 3px dashed #d4af37;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .content h2::before {
+            content: '🦴 ';
+            margin-right: 10px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .content h2::after {
+            content: ' 🦴';
+            margin-left: 10px;
+            animation: bounce 2s ease-in-out infinite reverse;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .content p {
+            line-height: 1.95;
+            margin-bottom: 25px;
+            color: #222;
+            font-size: 16px;
+        }
+
+        .content ul {
+            margin-left: 40px;
+            margin-bottom: 25px;
+        }
+
+        .content li {
+            margin-bottom: 20px;
+            line-height: 1.9;
+            color: #333;
+            font-size: 15px;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .content li::before {
+            content: '🦴';
+            position: absolute;
+            left: -25px;
+            animation: spin 2s linear infinite;
+        }
+
+        .content li strong {
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        /* Function list styling */
+        .functions-list {
+            background: linear-gradient(135deg, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0.12) 100%);
+            padding: 28px;
+            margin: 30px 0;
+            border-left: 8px solid #d4af37;
+            border-top: 3px dashed #d4af37;
+            border-bottom: 3px dashed #d4af37;
+            border-right: 3px solid #d4af37;
             border-radius: 10px;
+            box-shadow: 
+                inset 0 0 20px rgba(212,175,55,0.1),
+                0 4px 15px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .functions-list::before {
+            content: '🦴';
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 30px;
+            opacity: 0.3;
+        }
+
+        .functions-list:hover {
+            transform: translateX(8px);
+            box-shadow: 
+                inset 0 0 30px rgba(212,175,55,0.15),
+                0 8px 25px rgba(0,0,0,0.25),
+                0 0 20px rgba(212, 175, 55, 0.3);
+            border-left: 8px solid #ffb800;
+        }
+
+        .functions-list h3 {
+            color: #000;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            color: #d4af37;
+        }
+
+        .functions-list h3::before {
+            content: '💀 ';
+            margin-right: 8px;
+        }
+
+        .functions-list p {
+            color: #333;
+            margin: 0;
+            line-height: 1.9;
+        }
+
+        .functions-list li {
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        /* Fun Facts styling */
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.2) 0%, rgba(100, 181, 246, 0.08) 100%);
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 8px solid #64b5f6;
+            border-top: 3px dashed #64b5f6;
+            border-bottom: 3px dashed #64b5f6;
+            border-right: 3px solid #64b5f6;
+            border-radius: 10px;
+            font-size: 16px;
+            box-shadow: 
+                inset 0 0 20px rgba(100, 181, 246, 0.1),
+                0 4px 15px rgba(0,0,0,0.15);
+            line-height: 1.9;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .fun-fact::before {
+            content: '✨';
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 30px;
+            opacity: 0.4;
+            animation: spin 3s linear infinite;
+        }
+
+        .fun-fact:hover {
+            transform: translateX(8px);
+            box-shadow: 
+                inset 0 0 30px rgba(100, 181, 246, 0.15),
+                0 8px 25px rgba(0,0,0,0.25),
+                0 0 20px rgba(100, 181, 246, 0.3);
+            border-left: 8px solid #1e88e5;
+        }
+
+        .fun-fact strong {
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        /* Divider */
+        .divider {
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #d4af37, #ffb800, #d4af37, transparent);
+            margin: 40px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), inset 0 0 10px rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .divider::before {
+            content: '🦴';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #efefef;
+            padding: 0 10px;
+            font-size: 20px;
+        }
+
+        /* Image grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .image-box {
+            background: linear-gradient(135deg, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0.08) 100%);
+            padding: 35px;
+            border-radius: 10px;
+            border: 4px solid #d4af37;
+            text-align: center;
+            box-shadow: 
+                0 8px 30px rgba(0,0,0,0.3),
+                inset 0 0 20px rgba(212,175,55,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 260px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-box::before {
+            content: '🦴';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 40px;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .image-box::after {
+            content: '💀';
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            font-size: 40px;
+            opacity: 0.2;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+
+        .image-box:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.4),
+                inset 0 0 30px rgba(212,175,55,0.2),
+                0 0 30px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, rgba(255,184,0,0.3) 0%, rgba(212,175,55,0.15) 100%);
+        }
+
+        .skeleton-emoji {
+            font-size: 110px;
+            margin: 15px 0;
+            display: block;
+            animation: bounceHigh 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        @keyframes bounceHigh {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .image-box-title {
+            color: #000;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #d4af37;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { color: #d4af37; }
+            50% { color: #ffb800; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            nav li {
+                flex: 1;
+                min-width: 120px;
+                border-right: 3px solid #d4af37;
+                border-bottom: 3px solid #d4af37;
+            }
+
+            nav li:last-child {
+                border-right: none;
+            }
+
+            .header-center {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .header h1 {
+                font-size: 38px;
+                padding: 0 15px;
+            }
+
+            .header-left-bone,
+            .header-right-virus {
+                width: 110px;
+                height: 110px;
+                font-size: 60px;
+            }
+
+            .header {
+                min-height: auto;
+                padding: 30px 20px;
+                margin: 15px;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .content {
+                padding: 30px 20px;
+                margin: 15px;
+            }
+
+            .content h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #000 0%, #1a1a1a 50%, #000 100%);
+            color: #d4af37;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 5px solid #d4af37;
+            border-bottom: 5px solid #d4af37;
+            font-size: 14px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(212, 175, 55, 0.4);
+            box-shadow: 
+                0 -8px 25px rgba(0,0,0,0.8),
+                inset 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        footer p {
+            margin: 12px 0;
+            letter-spacing: 1px;
+            font-weight: 600;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        footer p:first-child::before {
+            content: '🦴 ';
+            margin-right: 10px;
+        }
+
+        footer p:first-child::after {
+            content: ' 🦴';
+            margin-left: 10px;
+        }
+
+        /* Scroll bar styling */
+        ::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+            border-left: 2px solid #d4af37;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #d4af37, #ffb800, #d4af37);
+            border-radius: 8px;
+            border: 2px solid #1a1a1a;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #ffb800, #ffcc00, #ffb800);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+        }
+
+        /* Sparkle effect */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .content::before,
+        .content::after {
+            animation: float 4s ease-in-out infinite;
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar Horizontal -->
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Types of Bones</a>
-        <a href="#">Functions</a>
-        <a href="#">Fun Facts</a>
+        <ul>
+            <li><a onclick="showSection('home')">Function of Bones</a></li>
+            <li><a onclick="showSection('diseases')">Diseases /injuries</a></li>
+            <li><a onclick="showSection('parts')">Parts of the bone</a></li>
+            <li><a onclick="showSection('types')">Types of bones</a></li>
+            <li><a onclick="showSection('funfacts')">Fun Facts</a></li>
+        </ul>
     </nav>
 
-    <div class="container">
-
-        <h1>The Human Skeleton</h1>
-
-        <p>Bones help support and protect the human body.</p>
-
-        <!-- Bone Example 1 -->
-        <div class="bone-card">
-            <h2>Skull</h2>
-
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Human_skull_front_simplified.png" alt="Skull">
-
-            <p>The skull protects the brain.</p>
+    <!-- Home Section -->
+    <div id="home" class="content active">
+        <div class="header">
+            <div class="header-center">
+                <div class="header-left-bone">🔥</div>
+                <h1>FUNCTION OF BONES</h1>
+                <div class="header-right-virus">🦠</div>
+            </div>
+            <p>Christian P, Mateo G, Isabella P, and Joshua C</p>
         </div>
+        <div class="container">
+            <p>Bones provide structural support, protect vital organs, enable movement, store essential minerals, and host bone marrow. Far from just being a rigid frame, they are active, living organs that actively manage your body's overall metabolism.</p>
+            
+            <div class="divider"></div>
 
-        <!-- Bone Example 2 -->
-        <div class="bone-card">
-            <h2>Femur</h2>
+            <div class="functions-list">
+                <h3>Support:</h3>
+                <p>They provide a scaffold to hold the body up, giving shape and stability.</p>
+            </div>
 
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Femur_front.png" alt="Femur Bone">
+            <div class="functions-list">
+                <h3>Protection:</h3>
+                <p>Rigid bones encase soft, delicate organs to protect them from impact or injury (e.g., the skull protects the brain, and the rib cage protects the heart).</p>
+            </div>
 
-            <p>The femur is the longest bone in the body.</p>
+            <div class="functions-list">
+                <h3>Movement:</h3>
+                <p>Bones act as levers that work with muscles, tendons, and ligaments to allow you to walk, run, and twist.</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Mineral and Energy Storage:</h3>
+                <p>Bones store essential minerals needed for health.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="image-grid">
+                <div class="image-box">
+                    <div class="skeleton-emoji">💀</div>
+                    <div class="image-box-title">Skeleton</div>
+                </div>
+                <div class="image-box">
+                    <div class="skeleton-emoji">🦴</div>
+                    <div class="image-box-title">Bones</div>
+                </div>
+            </div>
         </div>
-
     </div>
 
+    <!-- Diseases/Injuries Section -->
+    <div id="diseases" class="content">
+        <div class="header">
+            <div class="header-center">
+                <div class="header-left-bone">🔥</div>
+                <h1>DISEASES /INJURIES</h1>
+                <div class="header-right-virus">🦠</div>
+            </div>
+            <p>Christian P, Mateo G, Isabella P, and Joshua C</p>
+        </div>
+        <div class="container">
+            <p>Bone diseases and injuries can be divided into degenerative, genetic, infectious, and traumatic categories. These conditions can range from bone-weakening disorders like osteoporosis to physical fractures—directly impact bone strength, structure, and density, often causing severe pain and mobility issues.</p>
+
+            <div class="divider"></div>
+
+            <div class="functions-list">
+                <h3>Metabolic & Degenerative Diseases:</h3>
+                <ul>
+                    <li><strong>• Osteoporosis</strong></li>
+                    <li><strong>• Osteopenia</strong></li>
+                    <li><strong>• Paget's Disease of Bone</strong></li>
+                    <li><strong>• Osteomalacia & Rickets</strong></li>
+                </ul>
+            </div>
+
+            <div class="functions-list">
+                <h3>Genetic & Rare Disorders:</h3>
+                <ul>
+                    <li><strong>• Osteogenesis Imperfecta</strong></li>
+                    <li><strong>• Osteopetrosis</strong></li>
+                </ul>
+            </div>
+
+            <div class="functions-list">
+                <h3>Infections & Vascular Diseases:</h3>
+                <ul>
+                    <li><strong>• Osteomyelitis</strong></li>
+                    <li><strong>• Osteonecrosis (Avascular Necrosis)</strong></li>
+                </ul>
+            </div>
+
+            <div class="functions-list">
+                <h3>Bone Cancers & Tumors:</h3>
+                <ul>
+                    <li><strong>• Osteosarcoma</strong></li>
+                    <li><strong>• Metastatic Bone Disease</strong></li>
+                </ul>
+            </div>
+
+            <div class="functions-list">
+                <h3>Traumatic Injuries (Fractures):</h3>
+                <ul>
+                    <li><strong>• Stress Fracture</strong></li>
+                    <li><strong>• Comminuted Fracture</strong></li>
+                    <li><strong>• Greenstick Fracture</strong></li>
+                    <li><strong>• Open Fracture</strong></li>
+                </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="image-grid">
+                <div class="image-box">
+                    <div class="skeleton-emoji">😷</div>
+                    <div class="image-box-title">Illness</div>
+                </div>
+                <div class="image-box">
+                    <div class="skeleton-emoji">🚑</div>
+                    <div class="image-box-title">Emergency</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parts of the Bone Section -->
+    <div id="parts" class="content">
+        <div class="header">
+            <div class="header-center">
+                <div class="header-left-bone">🔥</div>
+                <h1>PARTS OF THE BONE</h1>
+                <div class="header-right-virus">🦠</div>
+            </div>
+            <p>Christian P, Mateo G, Isabella P, and Joshua C</p>
+        </div>
+        <div class="container">
+            <p>In the bone we have 6 parts: the compact bone, spongy bone, red bone marrow, yellow bone marrow, arteries, and the veins.</p>
+
+            <div class="divider"></div>
+
+            <div class="functions-list">
+                <h3>Compact Bone:</h3>
+                <p>Dense outer shell made of repeating units called osteons. It bears weight and resists mechanical stress.</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Spongy Bone:</h3>
+                <p>Light internal network of bone arches called trabeculae. It absorbs impacts and houses marrow.</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Red Bone Marrow:</h3>
+                <p>Highly vascular tissue that produces red blood cells, white blood cells, and platelets.</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Yellow Bone Marrow:</h3>
+                <p>Fat-rich tissue that replaces red marrow in adults and acts as an energy reserve.</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Arteries:</h3>
+                <p>Blood vessels entering via nutrient foramina to supply oxygen and nutrients to bone cells.</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Veins:</h3>
+                <p>Blood vessels that carry metabolic waste away from the bone and transport newly formed blood cells.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="image-grid">
+                <div class="image-box">
+                    <div class="skeleton-emoji">🧬</div>
+                    <div class="image-box-title">Structure</div>
+                </div>
+                <div class="image-box">
+                    <div class="skeleton-emoji">🔬</div>
+                    <div class="image-box-title">Microscopic</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Types of Bones Section -->
+    <div id="types" class="content">
+        <div class="header">
+            <div class="header-center">
+                <div class="header-left-bone">🔥</div>
+                <h1>TYPES OF BONES</h1>
+                <div class="header-right-virus">🦠</div>
+            </div>
+            <p>Christian P, Mateo G, Isabella P, and Joshua C</p>
+        </div>
+        <div class="container">
+            <p>Bones come in different shapes and sizes, each designed for specific purposes in your body:</p>
+
+            <div class="divider"></div>
+
+            <div class="functions-list">
+                <h3>Long Bones:</h3>
+                <p>Longer than they are wide. They act as levers to facilitate movement. Examples: Femur (thigh bone), humerus (upper arm), and tibia (shin bone).</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Short Bones:</h3>
+                <p>Roughly cube-shaped, providing stability and support with limited movement. Examples: Carpals (wrist bones) and tarsals (ankle bones).</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Flat Bones:</h3>
+                <p>Thin, flattened, and usually curved. They protect vital internal organs. Examples: Skull bones, ribs, and the sternum (breastbone).</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Irregular Bones:</h3>
+                <p>Complex shapes that do not fit into other categories. Examples: Vertebrae (spine) and the pelvis.</p>
+            </div>
+
+            <div class="functions-list">
+                <h3>Sesamoid Bones:</h3>
+                <p>Small, round bones embedded within tendons to protect them from stress and wear.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="image-grid">
+                <div class="image-box">
+                    <div class="skeleton-emoji">🦵</div>
+                    <div class="image-box-title">Long Bones</div>
+                </div>
+                <div class="image-box">
+                    <div class="skeleton-emoji">🧠</div>
+                    <div class="image-box-title">Flat Bones</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fun Facts Section -->
+    <div id="funfacts" class="content">
+        <div class="header">
+            <div class="header-center">
+                <div class="header-left-bone">🔥</div>
+                <h1>FUN FACTS</h1>
+                <div class="header-right-virus">🦠</div>
+            </div>
+            <p>Christian P, Mateo G, Isabella P, and Joshua C</p>
+        </div>
+        <div class="container">
+            <p>Discover amazing facts about your skeleton:</p>
+
+            <div class="divider"></div>
+
+            <div class="fun-fact">
+                <strong>• Babies start with more:</strong> You have 206 bones in your adult body, but you were born with around 300. They are separated by soft cartilage to make birth easier, and fuse together as you grow.
+            </div>
+
+            <div class="fun-fact">
+                <strong>• Once for ounce, they beat steel:</strong> Compact bone is incredibly dense and can support heavy loads without snapping.
+            </div>
+
+            <div class="fun-fact">
+                <strong>• The "bone" that isn't:</strong> When you bang your elbow and feel a weird, zapping tingling pain, you are hitting your ulnar nerve—not your "funny bone" (which is actually your upper arm bone, the humerus).
+            </div>
+
+            <div class="fun-fact">
+                <strong>• Bone Floater:</strong> The hyoid bone in your throat is the only bone in the entire body that doesn't connect to any other bone. It just floats there to support your tongue and help you speak.
+            </div>
+
+            <div class="fun-fact">
+                <strong>• A brand new you:</strong> Your skeleton is constantly breaking down and rebuilding itself. Thanks to these amazing cells, you get a "brand new" skeleton every 10 years.
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="image-grid">
+                <div class="image-box">
+                    <div class="skeleton-emoji">😲</div>
+                    <div class="image-box-title">Amazing</div>
+                </div>
+                <div class="image-box">
+                    <div class="skeleton-emoji">🤓</div>
+                    <div class="image-box-title">Learn</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 The Skeletal System. Educational Resource</p>
+        <p>Gracias por usar nuestro sitio educativo 🙏</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all content sections
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // Update active navigation link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
